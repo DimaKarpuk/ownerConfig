@@ -5,19 +5,29 @@ import org.aeonbits.owner.Config;
 import static com.codeborne.selenide.Browsers.CHROME;
 
 @Config.Sources({
-        "classpath:local.properties"
+        "classpath:${env}.properties"
 })
 public interface ConfigData extends Config {
+    @Key("baseUrl")
     @DefaultValue("https://github.com")
     String getBaseUrl();
 
+    @Key("browser")
     @DefaultValue(CHROME)
     String getBrowser();
 
+    @Key("browserSize")
     @DefaultValue("1920x1080")
     String getBrowserSize();
-    @DefaultValue("122")
+
+    @Key("browserVersion")
+    @DefaultValue("126")
     String getBrowserVersion();
-//    @DefaultValue("false")
-//    boolean isRemote();
+
+    @Key("isRemote")
+    @DefaultValue("false")
+    boolean isRemote();
+
+    @Key("remoteUrl")
+    String remoteUrl();
 }
